@@ -45,7 +45,7 @@ if not ifile:
 book = xlrd.open_workbook(ifile)
 sh = book.sheet_by_index(0)
 tocsv = open(ifile+'.csv', 'w')
-wr = unicodecsv.writer(tocsv, encoding='utf-8', quoting=unicodecsv.QUOTE_ALL)
+wr = unicodecsv.writer(tocsv, encoding='utf-8')
 
 for rownum in xrange(sh.nrows):
         wr.writerow(sh.row_values(rownum))
@@ -56,7 +56,7 @@ tocsv.close()
 df = pd.read_csv(ifile +'.csv', dtype={
             "Région" : str,
             "ancienne région" : str,
-            "N° Département" : str,
+            "N° Département" : int,
             "Département" : str,
             "Nom" : str,
             "Prénom" : str,
